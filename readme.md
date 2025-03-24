@@ -8,5 +8,5 @@ This tool builds an executable (`crypted.exe`) that bypasses EDR by adavanced ev
    ```
 3. The final executable `crypted.exe` is generated.
 
-**Disclaimer:** For educational purposes only.
+
 ```
